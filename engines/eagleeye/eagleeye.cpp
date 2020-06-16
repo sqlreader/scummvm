@@ -20,48 +20,20 @@
  *
  */
 
-#ifndef EAGLEEYE_H
-#define EAGLEEYE_H
+#include "eagleeye/eagleeye.h"
 
-#include "engines/engine.h"
-#include "common/rect.h"
-#include "common/file.h"
-#include "common/savefile.h"
-#include "common/util.h"
-#include "common/random.h"
-
-/**
- * This is the namespace of the EagleEye engine.
- *
- * Status of this engine: In progress
- *
- * Games using this engine:
- * - Eagle Eye Mysteries
- */
 namespace EagleEye {
 
-struct EagleEyeGameDescription;
+EagleEyeEngine::EagleEyeEngine(OSystem *system, const EagleEyeGameDescription *gameDesc)
+    : Engine(system), _gameDescription(gameDesc) {
+}
 
-class EagleEyeEngine : public Engine {
-private:
-	const EagleEyeGameDescription *_gameDescription;
+Common::Error EagleEyeEngine::init() {
+    return Common::kNoError;
+}
 
-public:
-	EagleEyeEngine(OSystem *system, const EagleEyeGameDescription *gameDesc);
-	~EagleEyeEngine() override;
+EagleEyeEngine::~EagleEyeEngine() {};
 
-    Common::Error init();
-	Common::Error go();
-	Common::Error run() override {
-		Common::Error err;
-		if (err.getCode() != Common::kNoError)
-		return err;
-		return go();
-	}
+Common::Error EagleEyeEngine::go() {};
 
-	Common::Platform getPlatform() const;
-
-};
 } // End of namespace EagleEye
-
-#endif

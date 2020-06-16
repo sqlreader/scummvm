@@ -1,7 +1,8 @@
-MODULE := engines/eagleeyecopy
+MODULE := engines/eagleeye
 
 MODULE_OBJS := \
-	detection.o
+	detection.o \
+	eagleeye.o
 
 # This module can be built as a plugin
 ifeq ($(ENABLE_EAGLEEYE), DYNAMIC_PLUGIN)
