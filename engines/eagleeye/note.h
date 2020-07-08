@@ -20,52 +20,35 @@
  *
  */
 
-#ifndef EAGLEEYE_H
-#define EAGLEEYE_H
+#ifndef EAGLEEYE_NOTE_H
+#define EAGLEEYE_NOTE_H
 
-#include "engines/engine.h"
-#include "common/rect.h"
-#include "common/file.h"
-#include "common/savefile.h"
-#include "common/util.h"
-#include "common/random.h"
-
-/**
- * This is the namespace of the EagleEye engine.
- *
- * Status of this engine: In progress
- *
- * Games using this engine:
- * - Eagle Eye Mysteries
- */
-
-#include "engines/engine.h"
 #include "common/scummsys.h"
 
 namespace EagleEye {
 
-struct EagleEyeGameDescription;
-
-class EagleEyeEngine : public Engine {
-private:
-	const EagleEyeGameDescription *_gameDescription;
-
-public:
-	EagleEyeEngine(OSystem *system, const EagleEyeGameDescription *gameDesc);
-	~EagleEyeEngine() override;
-
-    Common::Error init();
-	Common::Error go();
-	Common::Error run() override {
-		Common::Error err;
-		if (err.getCode() != Common::kNoError)
-		return err;
-		return go();
-	}
-
-	Common::Platform getPlatform() const;
-
+struct NoteArrayStruct {
+    uint8 textOffset;
+    uint8 points;
 };
+
+struct GrPicStruct {
+    uint8 miscflags;
+    uint8 height;
+    uint8 width;
+    int rowoff;
+    int coloff;
+    uint8 length;
+    char *picpntr;
+};
+
+struct Rect {
+    uint8 x1;
+    uint8 y1;
+    uint8 x2;
+    uint8 y2;
+};
+
 } // End of namespace EagleEye
 
 #endif

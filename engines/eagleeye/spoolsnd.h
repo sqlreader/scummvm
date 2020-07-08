@@ -20,52 +20,26 @@
  *
  */
 
-#ifndef EAGLEEYE_H
-#define EAGLEEYE_H
+#ifndef EAGLEEYE_SPOOLSND_H
+#define EAGLEEYE_SPOOLSND_H
 
-#include "engines/engine.h"
-#include "common/rect.h"
-#include "common/file.h"
-#include "common/savefile.h"
-#include "common/util.h"
-#include "common/random.h"
-
-/**
- * This is the namespace of the EagleEye engine.
- *
- * Status of this engine: In progress
- *
- * Games using this engine:
- * - Eagle Eye Mysteries
- */
-
-#include "engines/engine.h"
 #include "common/scummsys.h"
 
 namespace EagleEye {
 
-struct EagleEyeGameDescription;
-
-class EagleEyeEngine : public Engine {
-private:
-	const EagleEyeGameDescription *_gameDescription;
-
-public:
-	EagleEyeEngine(OSystem *system, const EagleEyeGameDescription *gameDesc);
-	~EagleEyeEngine() override;
-
-    Common::Error init();
-	Common::Error go();
-	Common::Error run() override {
-		Common::Error err;
-		if (err.getCode() != Common::kNoError)
-		return err;
-		return go();
-	}
-
-	Common::Platform getPlatform() const;
-
+struct SDBIndexStruct {
+    ulong DiskAddress;
+    ulong DiskSize;
+    ulong MemSize;
 };
+
+struct sound_buff {
+    uint8 pack_type;
+    uint8 sample_rate;
+    void *data;
+    ulong len;
+};
+
 } // End of namespace EagleEye
 
 #endif
